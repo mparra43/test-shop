@@ -1,7 +1,13 @@
-import { Suspense } from "react";
+import { ReactNode, Suspense } from "react";
 import { Spinner } from "./shared/components";
-import { BrowserRouter } from 'react-router-dom'
-function App() {
+import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
+type AppProviderProps = {
+  children: ReactNode;
+};
+
+function App({ children }: AppProviderProps) {
   return (
     <Suspense
       fallback={
@@ -10,14 +16,9 @@ function App() {
         </div>
       }
     >
-        {/* <HelmetProvider>
-        <ToastContainer />
-        <AuthProvider>
-          <BrowserRouter>{children}</BrowserRouter>
-        </AuthProvider>
-      </HelmetProvider> */}
+      <ToastContainer />
+      <BrowserRouter>{children}</BrowserRouter>
     </Suspense>
-    
   );
 }
 
